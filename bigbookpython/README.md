@@ -1,0 +1,1 @@
+Projekt realizuje różne zadania (właściwie - zadanka) z książki Ala Sweigarta "The big book of small python projects"
