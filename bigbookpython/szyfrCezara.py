@@ -17,6 +17,7 @@ def import_pyperclip():
         import pyperclip
     except ImportError as err:
         print("importowanie - pyperclip Import Error")
+        raise ImportError
 
 
 def choose_mode() -> str:
@@ -28,10 +29,10 @@ def choose_mode() -> str:
         print("Czy chcesz (z)aszyfrować, czy (o)dszyfrować?")
         response = input("> ").lower()
         if response.startswith('z'):
-            mode = "encrypt"
+            mode = "decrypt"
             break
         elif response.startswith('o'):
-            mode = "decrypt"
+            mode = "encrypt"
             break
         print('Wprowadź literę "z" lub "o".')
 
@@ -109,7 +110,6 @@ def copy_to_clipboard(words: str):
 
 
 def main():
-    import_pyperclip()
     SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
     print("szyfr Cezara, w oparciu o książkę Ala Sweigarta")

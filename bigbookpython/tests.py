@@ -8,6 +8,7 @@ from unittest.mock import patch
 import blackjack
 from bagels import get_secret_num, NUM_DIGITS, get_clues
 from birthdayproblem import get_birthdays, get_match
+from szyfrCezara import *
 
 
 class TestsBagels(TestCase):
@@ -163,7 +164,17 @@ class TestsBlackjack(TestCase):
 
 class TestsSzyfrCezara(TestCase):
     def setUp(self) -> None:
-        pass
+        SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+    def test_import_pyperclip(self):
+        with self.assertRaises(ImportError):
+            import_pyperclip()
+
+    def test_choose_mode(self):
+        with mock.patch('builtins.input', return_value='100'):
+            wynik = choose_mode()
+
+        assert wynik == 100
 
 
 if __name__ == "__main__":
