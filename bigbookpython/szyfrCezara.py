@@ -19,7 +19,7 @@ def import_pyperclip():
         print("importowanie - pyperclip Import Error")
 
 
-def choose_mode():
+def choose_mode() -> str:
     """
     Zwraca wybrany tryb - szyfrowanie czy odszyfrowywanie.
     """
@@ -38,7 +38,7 @@ def choose_mode():
     return mode
 
 
-def choose_key(symbols: str):
+def choose_key(symbols: str) -> int:
     """
     Zwraca wybrany przez użytkownika klucz szyfrowania.
     """
@@ -58,7 +58,7 @@ def choose_key(symbols: str):
     return key
 
 
-def get_message(mode: str):
+def get_message(mode: str) -> str:
     print("Podaj wiadomość w trybie: {}".format(mode))
     message = input("> ")
     message = message.upper()
@@ -66,17 +66,50 @@ def get_message(mode: str):
     return message
 
 
-def do_translation():
+def do_translation(message: str, symbols: str, mode: str, key: int) -> str:
     """
     Metoda szyfrująca otrzymają wiadomość w trybie podanym jako drugi paramter,
     kluczem podanym jako trzeci parametr.
 
     :return: przetworzoną wiadomość.
     """
-    return 0
+    translated = ""
+
+    for symbol in message:
+        if symbol in symbols:
+            num = symbols.find(symbol)
+            if mode == "encrypt":
+                num += key
+            elif mode == 'decrypt':
+                num -= key
+
+            if num >= len(symbols):
+                num -= len(symbols)
+            elif num < 0:
+                num += len(symbols)
+            translated += symbols[num]
+        else:
+            translated += symbol
+
+    return translated
+
+
+def copy_to_clipboard(words: str):
+    try:
+        import pyperclip
+
+        try:
+            pyperclip.copy(words)
+            print("Cały przetworzony tekst skopiowany do schowka")
+        except:
+            pass
+
+    except ImportError as err:
+        print("importowanie - pyperclip Import Error")
 
 
 def main():
+    import_pyperclip()
     SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
     print("szyfr Cezara, w oparciu o książkę Ala Sweigarta")
@@ -84,7 +117,11 @@ def main():
     mode = choose_mode()
     key = choose_key(SYMBOLS)
     message = get_message(mode)
-    translated = do_translation()
+    translated = do_translation(message=message, symbols=SYMBOLS, mode=mode, key=key)
+
+    print(translated)
+    
+    copy_to_clipboard(translated)
 
 
 if __name__ == "__main__":
