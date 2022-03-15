@@ -163,7 +163,7 @@ class TestsBlackjack(TestCase):
 
 class TestsSzyfrCezara(TestCase):
     def setUp(self) -> None:
-        pass 
+        pass
 
 
 if __name__ == "__main__":
