@@ -30,12 +30,50 @@ def choose_mode():
         if response.startswith('z'):
             mode = "encrypt"
             break
-        elif response.startswith('o')
+        elif response.startswith('o'):
             mode = "decrypt"
             break
         print('Wprowadź literę "z" lub "o".')
-        
+
     return mode
+
+
+def choose_key(symbols: str):
+    """
+    Zwraca wybrany przez użytkownika klucz szyfrowania.
+    """
+    key = None
+
+    while True:
+        maxKey = len(symbols) - 1
+        print("Podaj klucz (od 0 do {})".format(maxKey))
+        response = input("> ").upper()
+
+        if not response.isdecimal():
+            continue
+        if 0 <= int(response) < len(symbols):
+            key = int(response)
+            break
+
+    return key
+
+
+def get_message(mode: str):
+    print("Podaj wiadomość w trybie: {}".format(mode))
+    message = input("> ")
+    message = message.upper()
+
+    return message
+
+
+def do_translation():
+    """
+    Metoda szyfrująca otrzymają wiadomość w trybie podanym jako drugi paramter,
+    kluczem podanym jako trzeci parametr.
+
+    :return: przetworzoną wiadomość.
+    """
+    return 0
 
 
 def main():
@@ -44,6 +82,9 @@ def main():
     print("szyfr Cezara, w oparciu o książkę Ala Sweigarta")
 
     mode = choose_mode()
+    key = choose_key(SYMBOLS)
+    message = get_message(mode)
+    translated = do_translation()
 
 
 if __name__ == "__main__":
