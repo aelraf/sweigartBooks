@@ -170,11 +170,24 @@ class TestsSzyfrCezara(TestCase):
         with self.assertRaises(ImportError):
             import_pyperclip()
 
-    def test_choose_mode(self):
-        with mock.patch('builtins.input', return_value='100'):
+    def test_choose_mode_decrypt(self):
+        with mock.patch('builtins.input', return_value='z'):
             wynik = choose_mode()
 
-        assert wynik == 100
+        assert wynik == 'decrypt'
+
+    def test_choose_mode_encrypt(self):
+        with mock.patch('builtins.input', return_value='o'):
+            wynik = choose_mode()
+
+        assert wynik == 'encrypt'
+
+    def test_choose_key_decimal(self):
+        SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        with mock.patch('builtins.input', return_value='10'):
+            wynik = choose_key(SYMBOLS)
+
+        assert wynik == 'encrypt'
 
 
 if __name__ == "__main__":
