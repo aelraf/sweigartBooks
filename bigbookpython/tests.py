@@ -182,12 +182,39 @@ class TestsSzyfrCezara(TestCase):
 
         assert wynik == 'encrypt'
 
-    def test_choose_key_decimal(self):
+    def test_choose_key_string(self):
         SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
         with mock.patch('builtins.input', return_value='10'):
             wynik = choose_key(SYMBOLS)
 
-        assert wynik == 'encrypt'
+        assert wynik == 10
+
+    def test_choose_key_decimal(self):
+        SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+        with mock.patch('builtins.input', return_value=22):
+            with self.assertRaises(AttributeError):
+                wynik = choose_key(SYMBOLS)
+
+                assert wynik == 22
+
+    def test_get_message_encrypted_small(self):
+        mode = 'encrypt'
+
+        with mock.patch('builtins.input', return_value="abc"):
+            wynik = get_message(mode)
+
+        assert wynik == 'ABC'
+
+    def test_get_message_encrypted_big(self):
+        mode = 'encrypt'
+
+        with mock.patch('builtins.input', return_value="ABC"):
+            wynik = get_message(mode)
+
+        assert wynik == 'ABC'
+
 
 
 if __name__ == "__main__":
