@@ -91,7 +91,19 @@ def get_calendar_for(year, month):
 
 
 def main():
-    pass
+    year = get_year_from_user()
+    month = get_month_from_user()
+
+    cal_text = get_calendar_for(year=year, month=month)
+    print(cal_text)
+
+    # zapisujemy kalendarz do pliku tekstowego
+    calendar_filename = 'calendar_{}_{}.txt'.format(year, month)
+
+    with open(calendar_filename, 'w') as file_obj:
+        file_obj.write(cal_text)
+
+    print("zapisano: " + calendar_filename)
 
 
 if __name__ == "__main__":
