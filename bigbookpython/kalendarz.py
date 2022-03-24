@@ -34,6 +34,25 @@ def get_year_from_user() -> int:
     return year
 
 
+def get_month_from_user() -> int:
+    month = 0
+
+    while True:
+        print("Podaj miesiąc dla kalendarza, 1-12:")
+        response = input('> ')
+
+        if not response.isdecimal():
+            print("Proszę podać numer miesiąca, 1 dla stycznia etc")
+            continue
+
+        month = int(response)
+        if 1 <= month <= 12:
+            break
+        print("Proszę podać numer miesiąca między 1 a 12.")
+
+    return month
+
+
 def get_calendar_for(year, month):
     cal_text = ""
     cal_text += (' ' * 34) + MONTHS[month - 1]
