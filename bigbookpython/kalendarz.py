@@ -55,7 +55,39 @@ def get_month_from_user() -> int:
 
 def get_calendar_for(year, month):
     cal_text = ""
-    cal_text += (' ' * 34) + MONTHS[month - 1]
+    cal_text += (' ' * 34) + MONTHS[month - 1] + " " + str(year) + '\n'
+    cal_text += '...Niedziela.....Poniedziałek....Wtorek...Środa...Czwartek....Piątek....Sobota..\n'
+    # dodajemy poziomą linię, rozdzielającą tekst
+    week_separator = ('+----------' * 7) + '+\n'
+    # pusty wiersz mający 10 spacji pomiędzy separatorami dni |
+    blank_row = ('|          ' * 7) + '|\n'
+
+    current_date = datetime.date(year, month, 1)
+
+    # "przesuwamy" datę, zeby zaczynała się od niedzieli, zgodnie z naszym kalendarzem
+    while current_date.weekday() != 6:
+        current_date -= datetime.timedelta(days=1)
+
+    while True:
+        cal_text += week_separator
+
+        day_number_row = ''
+        for i in range(7):
+            day_number_label = str(current_date.day).rjust(2)
+            day_number_row += '|' + day_number_label + (' ' * 8)
+            current_date += datetime.timedelta(days=1)
+
+        day_number_row += '|\n'
+
+        cal_text += day_number_row
+        for i in range(3):
+            cal_text += blank_row
+
+        if current_date.month != month:
+            break
+
+    cal_text += week_separator
+    return cal_text
 
 
 def main():
