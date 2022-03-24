@@ -255,6 +255,10 @@ class TestsSzyfrCezara(TestCase):
 
         assert wynik == "ALA MA KOTA"
 
+    def test_copy_to_clipboard(self):
+        words = "Ala ma kota"
+        with self.assertRaises(ImportError):
+            copy_to_clipboard(words=words)
 
 
 if __name__ == "__main__":
