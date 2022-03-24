@@ -215,6 +215,46 @@ class TestsSzyfrCezara(TestCase):
 
         assert wynik == 'ABC'
 
+    def test_do_translation_good_key_good_mode(self):
+        message = "Ala ma kota".upper()
+        SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        mode = 'encrypt'
+        key = 2
+
+        wynik = do_translation(message=message, symbols=SYMBOLS, mode=mode, key=key)
+
+        assert wynik == "CNC OC MQVC"
+
+    def test_do_translation_to_big_key_good_mode(self):
+        message = "Ala ma kota".upper()
+        SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        mode = 'encrypt'
+        key = 29
+
+        wynik = do_translation(message=message, symbols=SYMBOLS, mode=mode, key=key)
+
+        assert wynik == "DOD PD NRWD"
+
+    def test_do_translation_good_key_second_mode(self):
+        message = "CNC OC MQVC".upper()
+        SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        mode = 'decrypt'
+        key = 2
+
+        wynik = do_translation(message=message, symbols=SYMBOLS, mode=mode, key=key)
+
+        assert wynik == "ALA MA KOTA"
+
+    def test_do_translation_good_key_bad_mode(self):
+        message = "ALA MA KOTA"
+        SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        mode = 'something'
+        key = 2
+
+        wynik = do_translation(message=message, symbols=SYMBOLS, mode=mode, key=key)
+
+        assert wynik == "ALA MA KOTA"
+
 
 
 if __name__ == "__main__":
