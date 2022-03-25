@@ -56,7 +56,7 @@ def get_month_from_user() -> int:
 def get_calendar_for(year, month):
     cal_text = ""
     cal_text += (' ' * 34) + MONTHS[month - 1] + " " + str(year) + '\n'
-    cal_text += '...Niedziela.....Poniedziałek....Wtorek...Środa...Czwartek....Piątek....Sobota..\n'
+    cal_text += 'Niedziela..Poniedziałek...Wtorek....Środa....Czwartek.....Piątek.....Sobota..\n'
     # dodajemy poziomą linię, rozdzielającą tekst
     week_separator = ('+----------' * 7) + '+\n'
     # pusty wiersz mający 10 spacji pomiędzy separatorami dni |

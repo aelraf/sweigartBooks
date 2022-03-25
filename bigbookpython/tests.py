@@ -9,6 +9,7 @@ import blackjack
 from bagels import get_secret_num, NUM_DIGITS, get_clues
 from birthdayproblem import get_birthdays, get_match
 from szyfrCezara import *
+from kalendarz import *
 
 
 class TestsBagels(TestCase):
@@ -259,6 +260,27 @@ class TestsSzyfrCezara(TestCase):
         words = "Ala ma kota"
         with self.assertRaises(ImportError):
             copy_to_clipboard(words=words)
+
+
+class TestsKalendarz(TestCase):
+    def test_get_year_from_user(self):
+        with mock.patch('builtins.input', return_value="2022"):
+            wynik = get_year_from_user()
+
+        assert wynik == 2022
+
+    def test_get_year_from_user_small_date(self):
+        with mock.patch('builtins.input', return_value='1'):
+            wynik = get_year_from_user()
+
+            assert wynik == 1
+
+    def test_get_year_from_user_big_date(self):
+        with mock.patch('builtins.input', return_value='123456789012345678901234567890'):
+            wynik = get_year_from_user()
+
+            assert wynik == 123456789012345678901234567890
+
 
 
 if __name__ == "__main__":
