@@ -16,7 +16,7 @@ import sys
 JAPANESE_NUMBERS = {1: 'ICHI', 2: "NI", 3: "SAN", 4: "SHI", 5: "GO", 6: "ROKU"}
 
 
-def get_bet(purse: int):
+def get_bet(purse: int) -> int:
     print("Masz {} monet. Ile obstawiasz? (lub ZAKONCZ)".format(purse))
     while True:
         pot = input('> ')
@@ -25,6 +25,15 @@ def get_bet(purse: int):
             sys.exit()
         elif not pot.isdecimal():
             print("Proszę wprowadzić numer.")
+            continue
+        elif int(pot) > purse:
+            print("Nie masz środków na tak duży zakład.")
+            continue
+        else:
+            pot = int(pot)
+            break
+
+    return pot
 
 
 def main():
