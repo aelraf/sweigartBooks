@@ -281,6 +281,23 @@ class TestsKalendarz(TestCase):
 
             assert wynik == 123456789012345678901234567890
 
+    def test_get_month_from_user_1(self):
+        with mock.patch('builtins.input', return_value="1"):
+            wynik = get_month_from_user()
+
+        assert wynik == 1
+
+    def test_get_month_from_user_12(self):
+        with mock.patch('builtins.input', return_value="12"):
+            wynik = get_month_from_user()
+
+        assert wynik == 12
+
+    def test_get_month_from_user_7(self):
+        with mock.patch('builtins.input', return_value="7"):
+            wynik = get_month_from_user()
+
+        assert wynik == 7
 
 
 if __name__ == "__main__":
