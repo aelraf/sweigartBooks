@@ -299,6 +299,33 @@ class TestsKalendarz(TestCase):
 
         assert wynik == 7
 
+    def test_get_calendar_for(self):
+        year = 2022
+        month = 4
+
+        wynik = get_calendar_for(year=year, month=month)
+
+        self.assertRegex(wynik, "...")
+        self.assertRegex(wynik, "Poniedziałek")
+        self.assertRegex(wynik, "Środa")
+        self.assertRegex(wynik, "Czwartek.....Piątek")
+        self.assertRegex(wynik, "30")
+
+        self.assertNotRegex(wynik, "32")
+
+    def test_get_calendar_for_february_2021(self):
+        year = 2021
+        month = 2
+
+        wynik = get_calendar_for(year=year, month=month)
+
+        self.assertRegex(wynik, 'Środa')
+        self.assertRegex(wynik, '28')
+        self.assertRegex(wynik, '1')
+
+        self.assertNotRegex(wynik, '29')
+        self.assertNotRegex(wynik, '30')
+
 
 if __name__ == "__main__":
     unittest.main()
