@@ -16,7 +16,7 @@ import sys
 JAPANESE_NUMBERS = {1: 'ICHI', 2: "NI", 3: "SAN", 4: "SHI", 5: "GO", 6: "ROKU"}
 
 
-def get_bet(purse: int) -> int:
+def get_bet_casch(purse: int) -> int:
     print("Masz {} monet. Ile obstawiasz? (lub ZAKONCZ)".format(purse))
     while True:
         pot = input('> ')
@@ -34,6 +34,17 @@ def get_bet(purse: int) -> int:
             break
 
     return pot
+
+
+def get_dices() -> ():
+    dice1 = random.randint(1, 6)
+    dice2 = random.randint(1, 6)
+
+    return dice1, dice2
+
+
+def get_bet_player():
+
 
 
 def main():
