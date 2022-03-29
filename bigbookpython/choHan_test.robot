@@ -1,13 +1,14 @@
 *** Settings ***
-Documentation    Suite description
+Documentation    A test suite for multiple cho-han game.
+
 
 *** Test Cases ***
-Test title
-    [Tags]    DEBUG
-    Provided precondition
-    When action
-    Then check expectations
+Bet Should Be Done Two Times
+    Run Program
+
 
 *** Keywords ***
-Provided precondition
-    Setup system under test
+Run Program
+    [Arguments]    @{args}
+    Run Process    choHan.py    @{args}
+
