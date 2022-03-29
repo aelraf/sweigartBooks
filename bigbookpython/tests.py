@@ -333,7 +333,18 @@ class TestsChoHan(TestCase):
         purse = 100
 
         with mock.patch('builtins.input', return_value="100"):
-            wynik = get_bet_casch(purse)
+            pot = get_bet_casch(purse)
+
+            assert pot == 100
+
+    def test_get_dices(self):
+        dice1, dice2 = get_dices()
+
+        self.assertIsInstance(dice1, int)
+        self.assertIsInstance(dice2, int)
+
+        assert 0 < dice1 < 7
+        assert 0 < dice2 < 7
 
 
 if __name__ == "__main__":
