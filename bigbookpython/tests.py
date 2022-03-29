@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # RafKac
+import builtins
 import sys
 import unittest
 from unittest import TestCase, mock
@@ -345,6 +346,18 @@ class TestsChoHan(TestCase):
 
         assert 0 < dice1 < 7
         assert 0 < dice2 < 7
+
+    def test_get_bet_player_cho_or_han(self):
+        with mock.patch("builtins.input", return_value='CHO'):
+            bet = get_bet_player_cho_or_han()
+
+            assert bet == "CHO"
+
+    def test_get_bet_player_cho_or_han_han(self):
+        with mock.patch("builtins.input", return_value='HAN'):
+            bet = get_bet_player_cho_or_han()
+
+            assert bet == "HAN"
 
 
 if __name__ == "__main__":
