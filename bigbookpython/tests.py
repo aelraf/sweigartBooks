@@ -359,6 +359,30 @@ class TestsChoHan(TestCase):
 
             assert bet == "HAN"
 
+    def test_which_are_correct_cho(self):
+        dice1 = 1
+        dice2 = 2
+
+        wynik = which_are_correct(dice1=dice1, dice2=dice2)
+
+        self.assertEqual(wynik, 'HAN')
+
+    def test_which_are_correct_han(self):
+        dice1 = 5
+        dice2 = 3
+
+        wynik = which_are_correct(dice1=dice1, dice2=dice2)
+
+        self.assertEqual(wynik, 'CHO')
+
+    def test_which_are_correct_both_odd(self):
+        dice1 = 6
+        dice2 = 6
+
+        wynik = which_are_correct(dice1=dice1, dice2=dice2)
+
+        self.assertEqual(wynik, 'CHO')
+
 
 if __name__ == "__main__":
     unittest.main()
