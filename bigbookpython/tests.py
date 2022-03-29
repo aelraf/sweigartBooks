@@ -383,6 +383,24 @@ class TestsChoHan(TestCase):
 
         self.assertEqual(wynik, 'CHO')
 
+    def test_bet_result_win(self):
+        player_won = True
+        purse = 1000
+        pot = 1000
+
+        wynik = bet_result(player_won=player_won, purse=purse, pot=pot)
+
+        assert wynik == 1900, "Wygrana - 1900"
+
+    def test_bet_result_lost(self):
+        player_won = False
+        purse = 1000
+        pot = 1000
+
+        wynik = bet_result(player_won=player_won, purse=purse, pot=pot)
+
+        assert wynik == 0, "przegrana - 0"
+
 
 if __name__ == "__main__":
     unittest.main()
