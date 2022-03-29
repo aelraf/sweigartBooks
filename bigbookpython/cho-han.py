@@ -37,18 +37,36 @@ def get_bet_casch(purse: int) -> int:
 
 
 def get_dices() -> ():
+    """
+    Losuje wartości obu kości i je zwraca.
+    """
     dice1 = random.randint(1, 6)
     dice2 = random.randint(1, 6)
 
     return dice1, dice2
 
 
-def get_bet_player():
+def get_bet_player_cho_or_han() -> str:
+    bet = ''
+    while True:
+        bet = input('> ').upper()
+        if bet != 'CHO' and bet != 'HAN':
+            print("Proszę podaj 'CHO' albo 'HAN'. ")
+            continue
+        else:
+            break
 
+    return bet
 
 
 def main():
+    print("""
+    Cho-Han, tradycyjna gra Japońska. Dwie kostki są w bambusowych filiżankach.
+    Gracz musi zgadnąć, czy suma wyników jest parzysta (CHO), czy nieparzysta (HAN).
+    """)
+    purse = 5000
     while True:
+        get_bet_casch(purse=purse)
         pass
 
 
