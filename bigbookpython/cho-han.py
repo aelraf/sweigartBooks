@@ -59,7 +59,7 @@ def get_bet_player_cho_or_han() -> str:
     return bet
 
 
-def which_are_correct(dice1: str, dice2: str) -> str:
+def which_are_correct(dice1: int, dice2: int) -> str:
     correct_bet = ""
 
     roll_is_even = (dice1 + dice2) % 2 == 0
@@ -71,8 +71,17 @@ def which_are_correct(dice1: str, dice2: str) -> str:
     return correct_bet
 
 
-def bet_result():
+def bet_result(player_won: bool, purse: int, pot: int) -> int:
+    if player_won:
+        print("Wygrałeś ten zakład! Dostajesz: ", pot, ' monet.')
+        purse += pot
+        print('Bukmacher zabiera: ', pot // 10, 'monet jako opłatę.')
+        purse -= (pot // 10)
+    else:
+        purse -= pot
+        print("przegrałeś ten zakład!")
 
+    return purse
 
 
 def main():
@@ -99,7 +108,7 @@ def main():
 
         player_won = bet == correct_bet
 
-        bet_result()
+        purse = bet_result(player_won=player_won, purse=purse, pot=pot)
 
         if purse == 0:
             print('Nie masz więcej pieniędzy.')
