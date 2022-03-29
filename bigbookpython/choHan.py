@@ -96,7 +96,7 @@ def main():
 
         print("Prowadzący wrzuca kostki do filiżanek.")
         print('Kubki na podłodze - co obstawiasz?')
-        print("CHO (parzyste) czy HAN (nieparzyste)")
+        print("CHO (suma parzysta) czy HAN (suma nieparzysta)")
 
         bet = get_bet_player_cho_or_han()
 

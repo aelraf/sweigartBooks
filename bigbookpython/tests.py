@@ -10,6 +10,7 @@ from bagels import get_secret_num, NUM_DIGITS, get_clues
 from birthdayproblem import get_birthdays, get_match
 from szyfrCezara import *
 from kalendarz import *
+from choHan import *
 
 
 class TestsBagels(TestCase):
@@ -325,6 +326,14 @@ class TestsKalendarz(TestCase):
 
         self.assertNotRegex(wynik, '29')
         self.assertNotRegex(wynik, '30')
+
+
+class TestsChoHan(TestCase):
+    def test_get_bet_casch(self):
+        purse = 100
+
+        with mock.patch('builtins.input', return_value="100"):
+            wynik = get_bet_casch(purse)
 
 
 if __name__ == "__main__":
