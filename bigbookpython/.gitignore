@@ -139,3 +139,10 @@ cython_debug/
 
 
 calendar_*.txt
+
+
+# dla RobotFrameworka
+log.html
+output.xml
+report.html
+
