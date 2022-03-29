@@ -59,6 +59,22 @@ def get_bet_player_cho_or_han() -> str:
     return bet
 
 
+def which_are_correct(dice1: str, dice2: str) -> str:
+    correct_bet = ""
+
+    roll_is_even = (dice1 + dice2) % 2 == 0
+    if roll_is_even:
+        correct_bet = "CHO"
+    else:
+        correct_bet = "HAN"
+
+    return correct_bet
+
+
+def bet_result():
+
+
+
 def main():
     print("""
     Cho-Han, tradycyjna gra Japońska. Dwie kostki są w bambusowych filiżankach.
@@ -66,8 +82,29 @@ def main():
     """)
     purse = 5000
     while True:
-        get_bet_casch(purse=purse)
-        pass
+        pot = get_bet_casch(purse=purse)
+        dice1, dice2 = get_dices()
+
+        print("Prowadzący wrzuca kostki do filiżanek.")
+        print('Kubki na podłodze - co obstawiasz?')
+        print("CHO (parzyste) czy HAN (nieparzyste)")
+
+        bet = get_bet_player_cho_or_han()
+
+        print("prowadzący odsłania kubki pokazując zawartość: ")
+        print('  ', JAPANESE_NUMBERS[dice1], '-', JAPANESE_NUMBERS[dice2])
+        print('    ', dice1, '-', dice2)
+
+        correct_bet = which_are_correct(dice1=dice1, dice2=dice2)
+
+        player_won = bet == correct_bet
+
+        bet_result()
+
+        if purse == 0:
+            print('Nie masz więcej pieniędzy.')
+            print('dziękuję za grę!')
+            sys.exit()
 
 
 if __name__ == "__main__":
