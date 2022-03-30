@@ -2,24 +2,36 @@
 Documentation    A test suite for multiple cho-han game.
 Library    Process
 Library    Collections
+Library    OperatingSystem
+
+
+*** Variables ***
+@{FIRST_LIST}    100    1000    500    5000
 
 
 *** Test Cases ***
 Bet Should Be Done Two Times
     Run Program    shell=True
-    :FOR     ${ELEMENT}    IN    @{FIRST_LIST}
-    \    Input Value Of Bet
-    \    Random Value Of Dices
-    \    Player Choose Cho Or Han
-    \    Get Result Of The Bet
-
+    FOR     ${ELEMENT}    IN    @{FIRST_LIST}
+        Log To Console    ${\n} ${ELEMENT}
+        Input Value Of Bet
+        Random Value Of Dices
+        Player Choose Cho Or Han
+        Get Result Of The Bet
+    END
 
 *** Keywords ***
 Run Program
     # poniższe mi uruchomi proces w nowym oknie,
     # a ja chcę po prostu instancję procesu do testów
     [Arguments]    @{args}
-    Run Process    choHan.py    shell=True
+    # Run Process    choHan.py    @{args}
+
+    # to podejście nic nierobi
+    # Run    choHan.py @{args}
+
+    # trzecia próba
+    Start Process    ./choHan.py
 
     Log To Console    ${\n} Pierwszy test do Cho-Han - uruchamiamy gre
     Log To Console    ${\n} Gra zostala uruchomiona, wczytujemy dane.
