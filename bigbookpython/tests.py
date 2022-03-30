@@ -9,6 +9,7 @@ from unittest.mock import patch
 import blackjack
 from bagels import get_secret_num, NUM_DIGITS, get_clues
 from birthdayproblem import get_birthdays, get_match
+from collatzsequence import *
 from szyfrCezara import *
 from kalendarz import *
 from choHan import *
@@ -400,6 +401,20 @@ class TestsChoHan(TestCase):
         wynik = bet_result(player_won=player_won, purse=purse, pot=pot)
 
         assert wynik == 0, "przegrana - 0"
+
+
+class TestsCollatzSequence(TestCase):
+    def test_get_n_from_user_100(self):
+        with mock.patch('builtins.input', return_value="100"):
+            n = get_n_from_user()
+
+            assert n == 100
+
+    def test_get_n_from_user_10(self):
+        with mock.patch('builtins.input', return_value="10"):
+            n = get_n_from_user()
+
+            assert n == 10
 
 
 if __name__ == "__main__":
