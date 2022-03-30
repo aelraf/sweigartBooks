@@ -54,6 +54,9 @@ def main():
     2) n nieparzyste => następnik jest równy n * 3 + 1
     3) n == 1 => STOP
     """)
+    while True:
+        n = get_n_from_user()
+        collatz_sequence(n=n)
 
 
 if __name__ == "__main__":
