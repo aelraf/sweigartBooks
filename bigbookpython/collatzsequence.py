@@ -32,9 +32,10 @@ def get_n_from_user() -> int:
 
 
 def collatz_sequence(n: int):
-    print(n, end='', flush=True)
+    print(str(n) + ", ", end='', flush=True)
 
     i = 0
+    liczba = n
 
     while n != 1:
         if n % 2 == 0:
@@ -43,12 +44,12 @@ def collatz_sequence(n: int):
             n = 3 * n + 1
 
         i += 1
-        print(', ' + str(n), end='', flush=True)
+        print(str(n) + ', ', end='', flush=True)
         if i % 10 == 0:
             print()
         time.sleep(0.1)
 
-    print("\n ilość wyrazów w ciągu dla n={}: {}".format(n, i))
+    print("\n ilość wyrazów w ciągu dla n={}: {}".format(liczba, i))
 
 
 def main():
