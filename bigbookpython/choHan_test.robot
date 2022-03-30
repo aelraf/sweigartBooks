@@ -1,3 +1,5 @@
+# https://robotframework.org/robotframework/3.1.1/RobotFrameworkUserGuide.html
+
 *** Settings ***
 Documentation    A test suite for multiple cho-han game.
 Library    Process
@@ -25,13 +27,18 @@ Run Program
     # poniższe mi uruchomi proces w nowym oknie,
     # a ja chcę po prostu instancję procesu do testów
     [Arguments]    @{args}
-    # Run Process    choHan.py    @{args}
+    ${result}=    Run Process    python    choHan.py    shell=True
 
-    # to podejście nic nierobi
+    # to podejście nic nie robi
     # Run    choHan.py @{args}
 
     # trzecia próba
-    Start Process    ./choHan.py
+    # Start Process    ${CURDIR}/choHan.py
+    # też generuje OSError [WinError 193]
+
+    # czwarta próba, wymaga biblioteki WhiteNoise,
+    # Launch Application    python.exe    choHan.py
+
 
     Log To Console    ${\n} Pierwszy test do Cho-Han - uruchamiamy gre
     Log To Console    ${\n} Gra zostala uruchomiona, wczytujemy dane.
