@@ -27,7 +27,10 @@ Run Program
     # poniższe mi uruchomi proces w nowym oknie,
     # a ja chcę po prostu instancję procesu do testów
     [Arguments]    @{args}
-    ${result}=    Run Process    python    choHan.py    shell=True
+    # ${result}=    Run Process    python    choHan.py    shell=True
+
+    # piąte podejście
+    # ${result}=    Run Process    choHan.py    /I    shell=True
 
     # to podejście nic nie robi
     # Run    choHan.py @{args}
@@ -39,6 +42,10 @@ Run Program
     # czwarta próba, wymaga biblioteki WhiteNoise,
     # Launch Application    python.exe    choHan.py
 
+    # szósta próba - start process innaczej
+    # zwraca znów OSError
+    ${result}=    start process    choHan.py
+    Log to console    ${\n} id procesu: ${result.pid}
 
     Log To Console    ${\n} Pierwszy test do Cho-Han - uruchamiamy gre
     Log To Console    ${\n} Gra zostala uruchomiona, wczytujemy dane.
