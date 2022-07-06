@@ -42,6 +42,36 @@ def get_sev_seg_str(number, min_width=0):
             rows[0] += ' __ '
             rows[1] += " __|"
             rows[2] += "|__ "
+        elif numeral == "3":
+            rows[0] += ' __ '
+            rows[1] += ' __|'
+            rows[2] += ' __|'
+        elif numeral == '4':
+            rows[0] += '    '
+            rows[1] += '|__|'
+            rows[2] += '   |'
+        elif numeral == "5":
+            rows[0] += ' __ '
+            rows[1] += '|__ '
+            rows[2] += ' __|'
+        elif numeral == "6":
+            rows[0] += " __ "
+            rows[1] += "|__ "
+            rows[2] += "|__|"
+        elif numeral == "7":
+            rows[0] += " __ "
+            rows[1] += "   |"
+            rows[2] += "   |"
+        elif numeral == "8":
+            rows[0] += " __ "
+            rows[1] += "|__|"
+            rows[2] += "|__|"
+        elif numeral == "9":
+            rows[0] += " __ "
+            rows[1] += "|__|"
+            rows[2] += " __|"
+
+    return '\n'.join(rows)
 
 
 if __name__ == "__main__":
