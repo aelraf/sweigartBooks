@@ -14,6 +14,9 @@ Drugi gracz decyduje, czy zamienić pudła, czy nie.
 import random
 
 
+carrot_in_first_box: bool = False
+
+
 def start():
     print("""
     Gra dla dwóch ludzi. Każdy z nich ma pudło. W jednym pudle jest marchewka. 
@@ -27,6 +30,30 @@ def start():
     input('Press Enter to begin')
 
 
+def what_in_box(name):
+    print(name + " w swoim pudle masz: ")
+
+    if random.randint(1, 2) == 1:
+        carrot_in_first_box = True
+    else:
+        carrot_in_first_box = False
+
+    if carrot_in_first_box:
+        print("""
+           __VV___
+          |  VV   |
+          |  VV   |
+          |__||___|    ___________
+         /   ||  /|   /         / |
+        +-------+ |  +----------+ |
+        |  RED  | |  |   GOLD   | |
+        |  BOX  | /  |   BOX    | /
+        +-------+/   +----------+/
+          
+          
+        """)
+
+
 def print_boxes(player_names, p1_name, p2_name):
     print("""
     Dwa pudła:
@@ -37,6 +64,19 @@ def print_boxes(player_names, p1_name, p2_name):
     |      | /   |      | /
     +------+/    +------+/
     """)
+
+    print()
+    print(player_names)
+    print()
+    print(p1_name + ', masz przed sobą czerwone pudło.')
+    print(p2_name + ', masz przed sobą złote pudło.')
+    print()
+    print(p1_name + ", możesz zajrzeć do swojego pudła.")
+    print(p2_name.upper() + ", zamknij oczy i nie podglądaj!")
+    input("Kiedy " + p2_name + " zamknie oczy, wciśnij Enter...")
+    print()
+
+    what_in_box(name=p1_name)
 
 
 def read_names() -> (str, str):
